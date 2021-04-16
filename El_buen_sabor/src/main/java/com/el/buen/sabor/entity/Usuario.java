@@ -1,10 +1,12 @@
 package com.el.buen.sabor.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -32,5 +34,8 @@ public class Usuario {
 	
 	@Column(length = 30)
 	private String rol;
+	
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	private Cliente cliente;
 	
 }

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -44,7 +45,9 @@ public class ArticuloInsumo {
 	@Column(length = 128)
 	private String unidadMedida;
 	
-	
 	private boolean esInsumo;
+	
+	@ManyToOne
+	private RubroArticulo rubroArticulo;
 
 }
