@@ -34,8 +34,6 @@ public class RubroArticulo {
 	@Column(length = 300)
 	private String denominacion;
 	
-	//@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	//private List<RubroArticulo> rubroArticulo;
 	
 	@JsonIgnoreProperties(value = {"hijos", "handler", "hibernateLazyInitializer"})
 	@ManyToOne(fetch = FetchType.LAZY)
