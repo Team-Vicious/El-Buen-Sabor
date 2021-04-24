@@ -11,11 +11,13 @@ import com.formaciondbi.microservicios.generics.services.ServicesImpl;
 public class UsuarioServiceImpl extends ServicesImpl<Usuario, Long> implements UsuarioService{
 
 	@Autowired
-	UsuarioRepository repository;
-	
+	private UsuarioRepository usuarioRepository;
+
 	@Override
-	public Usuario findUsuarioByClienteId(Long id) {
-		return repository.findUsuarioByClienteId(id);
+	public Usuario buscarUsuario() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 	
 }
