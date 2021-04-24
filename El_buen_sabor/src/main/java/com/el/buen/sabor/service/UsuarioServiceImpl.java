@@ -12,4 +12,9 @@ public class UsuarioServiceImpl extends ServicesImpl<Usuario, Long> implements U
 
 	@Autowired
 	ArticuloInsumoRepository repository;
+	
+	@Override
+	public Usuario findUsuarioByClienteId(Long id) {
+		return null;
+	}
 }
