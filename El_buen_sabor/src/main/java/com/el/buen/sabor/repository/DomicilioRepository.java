@@ -11,5 +11,5 @@ public interface DomicilioRepository extends Repository<Domicilio, Long>{
 
 	
 	@Query("select d from Cliente c inner join c.domicilio d where c.id=?1")
-	public Domicilio findDomicilioByClientesId(Long id);
+	public Domicilio findDomicilioByClienteId(Long id);
 }
