@@ -9,7 +9,10 @@ import com.formaciondbi.microservicios.generics.repository.Repository;
 @org.springframework.stereotype.Repository
 public interface UsuarioRepository extends Repository<Usuario, Long>{
 	
-	@Query("select usuario from Usuario usuario join fetch usuario.cliente cli where cli.id=?1")
+	@Query("select u from Usuario u join fetch u.cliente cli where cli.id=?1")
 	public Usuario findUsuarioByClienteId(Long id);
+	
+	@Query("select u from Usuario u where u.usuario=?1 AND u.clave=?2")
+	public Usuario findUsuarioByUsuarioAndPassword(String usuario,String constraseña);
 
 }

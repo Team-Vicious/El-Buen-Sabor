@@ -48,4 +48,5 @@ public class Cliente {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Pedido> pedido;
 	
+	
 }
