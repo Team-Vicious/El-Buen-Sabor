@@ -34,4 +34,17 @@ public class UsuarioController extends ControllerImpl<Usuario, ServicesImpl<Usua
 					.body("{\"error\":\"error por favor intente mas tarde.\"}"+e.getMessage());
 		}
 	}
+	
+	@GetMapping("/login/{user}/{password}")
+	public ResponseEntity<?> findUsuarioByUsuarioAndPassword(@PathVariable String user, @PathVariable String password) {
+		
+		try {
+			
+			return ResponseEntity.status(HttpStatus.OK).body(service.findUsuarioByUsuarioAndPassword(user, password));
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body("{\"error\":\"error por favor intente mas tarde.\"}"+e.getMessage());
+		}
+	}
 }

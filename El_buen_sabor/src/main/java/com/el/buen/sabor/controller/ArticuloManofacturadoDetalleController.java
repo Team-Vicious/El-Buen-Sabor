@@ -12,7 +12,7 @@ import com.formaciondbi.microservicios.generics.services.ServicesImpl;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path = "api/articuloManofacturadoDetalle")
+@RequestMapping(path = "api/articuloManoFacturadoDetalle")
 public class ArticuloManofacturadoDetalleController extends ControllerImpl<ArticuloManofacturadoDetalle, ServicesImpl<ArticuloManofacturadoDetalle,Long>>{
 
 	@Autowired
