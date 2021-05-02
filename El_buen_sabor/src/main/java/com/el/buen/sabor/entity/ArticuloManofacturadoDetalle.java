@@ -27,7 +27,7 @@ public class ArticuloManofacturadoDetalle {
 	
 	@Column(length = 30)
 	private double cantidad;
-	
+		
 	@Column(length = 300)
 	private String unidadMedida;
 	
