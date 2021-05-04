@@ -6,5 +6,5 @@ import com.formaciondbi.microservicios.generics.services.Services;
 public interface ArticuloManofacturadoService extends Services<ArticuloManofacturado, Long> {
 	
 	public ArticuloManofacturado findArticuloManofacturadoById(Long id);
-
+	
 }
