@@ -1,11 +1,11 @@
 package com.el.buen.sabor.controller;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,8 +29,8 @@ public class ArticuloManofacturadoController extends ControllerImpl<ArticuloMano
 
 	@Autowired
 	ArticuloManofacturadoService service;
-	/*
-	@PostMapping("/crear")
+	
+	@PostMapping("/AMcrear-con-foto")
 	public ResponseEntity<?> crear(@Valid ArticuloManofacturado articuloManufacturado, BindingResult result,
 			@RequestParam MultipartFile foto) throws IOException {
 		if(!foto.isEmpty()) {
@@ -38,38 +38,39 @@ public class ArticuloManofacturadoController extends ControllerImpl<ArticuloMano
 		}
 		return super.save(articuloManufacturado, result);
 	}
-	*/
+	
 
-	/*@PutMapping("/editar/{id}")
+	@PutMapping("/AM-editar-con-foto/{id}")
 	public ResponseEntity<?> editar(@Valid ArticuloManofacturado articuloManufacturado,@PathVariable Long id,  BindingResult result, 
-			@RequestParam MultipartFile foto)  throws IOException {
+			@RequestParam MultipartFile archivo)  throws Exception {
 		
-		if(result.hasErrors()) {
-			return this.validar(result);
-			
+		ArticuloManofacturado art;
+		try {
+			 art= this.service.findById(id);
+			 			
+		}
+		catch(Exception e){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"error por favor intente mas tarde.\"}");
+						
 		}
 		
-		ArticuloManofacturado articulo = articuloManufacturado.
+		ArticuloManofacturado articulo=art;
 		
-	Optional<> opcional= service.findArticuloManofacturadoById(id);
+		articulo.setDenominacion(articuloManufacturado.getDenominacion());
+		articulo.setPrecioVenta(articuloManufacturado.getPrecioVenta());
+		articulo.setTiempoEstimadoCocina(articuloManufacturado.getTiempoEstimadoCocina());
 	
-	if(opcional.isEmpty()) {
-		return ResponseEntity.notFound().build();
-	}
-	
-	alumnoddbb.setNombre(alumno.getNombre()); 
-	alumnoddbb.setApellido(alumno.getApellido());
-	alumnoddbb.setEmail(alumno.getEmail());
-	
-	if(!foto.isEmpty()) {
-		alumnoddbb.setFoto(foto.getBytes());
-	}
-	return ResponseEntity.status(HttpStatus.CREATED).body(service.save(alumnoddbb));
-	
-	}
 		
-		return super.update(id, articuloManufacturado, result);
-	}*/
+	
+	
+	if(!archivo.isEmpty()) {
+		articulo.setImagen(archivo.getBytes());
+	}
+	
+	
+	return ResponseEntity.status(HttpStatus.CREATED).body(service.save(articulo));
+	
+	}
 
 	
 	
