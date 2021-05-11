@@ -41,15 +41,15 @@ public class ArticuloManofacturado {
 	@Column(length = 30)
 	private double precioVenta;
 	
-	@Column(length = 50)
-	private String imagen;
+	//@Column(length = 50)
+	//private String imagen;
 	
-	/*
+	
 	@Lob //esta annotation permite guardar en ddbb objetos como fotos, pdf, etc
-	@JsonIgnore //esto es porque no nos interesa pasarlo por el json ya que al ser bytes es muy grande y el
+	//esto es porque no nos interesa pasarlo por el json ya que al ser bytes es muy grande y el
 	//json crece exponencialmente y no nos conviene	
-	@Column(length = 500)
-	private byte[]imagen;*/	
+	@Column
+	private byte[] imagen;	
 	
 	
 	//este metodo es para que despues en el front nos retorne un codigo distinto de cada foto
