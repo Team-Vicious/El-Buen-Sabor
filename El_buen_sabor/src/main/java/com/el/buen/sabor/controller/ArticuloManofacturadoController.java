@@ -30,7 +30,8 @@ public class ArticuloManofacturadoController extends ControllerImpl<ArticuloMano
 	@Autowired
 	ArticuloManofacturadoService service;
 	
-	@PostMapping("/AMcrear-con-foto")
+
+	@PostMapping("/crear")
 	public ResponseEntity<?> crear(@Valid ArticuloManofacturado articuloManufacturado, BindingResult result,
 			@RequestParam MultipartFile foto) throws IOException {
 		if(!foto.isEmpty()) {
@@ -40,13 +41,15 @@ public class ArticuloManofacturadoController extends ControllerImpl<ArticuloMano
 	}
 	
 
-	@PutMapping("/AM-editar-con-foto/{id}")
+
+	@PutMapping("/editar/{id}")
 	public ResponseEntity<?> editar(@Valid ArticuloManofacturado articuloManufacturado,@PathVariable Long id,  BindingResult result, 
-			@RequestParam MultipartFile archivo)  throws Exception {
+			@RequestParam MultipartFile foto)  throws Exception {
 		
-		ArticuloManofacturado art;
+		ArticuloManofacturado articuloOp;
 		try {
-			 art= this.service.findById(id);
+			 articuloOp= this.service.findById(id);
+
 			 			
 		}
 		catch(Exception e){
@@ -54,28 +57,24 @@ public class ArticuloManofacturadoController extends ControllerImpl<ArticuloMano
 						
 		}
 		
-		ArticuloManofacturado articulo=art;
+
+		ArticuloManofacturado articuloDB=articuloOp;
 		
-		articulo.setDenominacion(articuloManufacturado.getDenominacion());
-		articulo.setPrecioVenta(articuloManufacturado.getPrecioVenta());
-		articulo.setTiempoEstimadoCocina(articuloManufacturado.getTiempoEstimadoCocina());
-	
-		
+		articuloDB.setDenominacion(articuloManufacturado.getDenominacion());
+		articuloDB.setTiempoEstimadoCocina(articuloManufacturado.getTiempoEstimadoCocina());
+		articuloDB.setPrecioVenta(articuloManufacturado.getPrecioVenta());
 	
 	
-	if(!archivo.isEmpty()) {
-		articulo.setImagen(archivo.getBytes());
-	}
-	
-	
-	return ResponseEntity.status(HttpStatus.CREATED).body(service.save(articulo));
-	
+	if(!foto.isEmpty()) {
+		articuloDB.setImagen(foto.getBytes());
 	}
 
 	
 	
+	return ResponseEntity.status(HttpStatus.CREATED).body(service.save(articuloDB));
 	
-	
+	}
+
 
 }
 	
