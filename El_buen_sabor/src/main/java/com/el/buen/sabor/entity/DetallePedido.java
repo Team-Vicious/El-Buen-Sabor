@@ -1,5 +1,7 @@
 package com.el.buen.sabor.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,6 +32,8 @@ public class DetallePedido {
 	
 	@Column(length = 30)
 	private double subTotal;
+	
+	private Date fechaBaja;
 	
 	@ManyToOne
 	private ArticuloManofacturado articuloManofacturado;

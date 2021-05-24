@@ -44,5 +44,9 @@ public class MercadopagoDatos {
 	
 	@Column(length = 30)
 	private String estado;
+	
+	private String preferenceId;
+	
+	private Date fechaBaja;
 
 }

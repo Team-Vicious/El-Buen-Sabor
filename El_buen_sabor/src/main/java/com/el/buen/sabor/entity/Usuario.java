@@ -1,5 +1,7 @@
 package com.el.buen.sabor.entity;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,13 +31,16 @@ public class Usuario {
 	@Column(length = 30)
 	private String usuario;
 	
-	@Column(length = 30)
+	@Column(length = 70)
 	private String clave;
 	
 	@Column(length = 30)
 	private String rol;
 	
+	private Date fechaBaja;
+	
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Cliente cliente;
+	
 	
 }

@@ -1,5 +1,7 @@
 package com.el.buen.sabor.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,5 +34,7 @@ public class Domicilio {
 	
 	@Column(length = 150)
 	private String localidad;
+	
+	private Date fechaBaja;
 
 }

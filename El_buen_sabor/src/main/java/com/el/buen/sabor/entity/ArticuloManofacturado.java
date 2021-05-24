@@ -1,5 +1,6 @@
 package com.el.buen.sabor.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,7 +14,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,8 +41,7 @@ public class ArticuloManofacturado {
 	@Column(length = 30)
 	private double precioVenta;
 	
-	//@Column(length = 50)
-	//private String imagen;
+	private Date fechaBaja;
 	
 	
 	@Lob //esta annotation permite guardar en ddbb objetos como fotos, pdf, etc

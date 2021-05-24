@@ -47,6 +47,8 @@ public class Pedido {
 	@Column(length = 30)
 	private double total;
 	
+	private Date fechaBaja;
+	
 	@OneToOne
 	private Domicilio domicilio;
 	

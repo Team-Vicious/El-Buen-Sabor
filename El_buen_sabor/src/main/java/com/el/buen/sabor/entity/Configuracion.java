@@ -1,5 +1,7 @@
 package com.el.buen.sabor.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,4 +34,6 @@ public class Configuracion {
 	
 	@Column(length = 300)
 	private String tokenMercadoPago;
+	
+	private Date fechaBaja;
 }

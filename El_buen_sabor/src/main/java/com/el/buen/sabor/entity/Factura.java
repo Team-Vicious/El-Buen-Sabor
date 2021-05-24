@@ -50,6 +50,8 @@ public class Factura {
 	@Column(length = 30)
 	private double totalCosto;
 	
+	private Date fechaBaja;
+	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<DetalleFactura> detalleFactura;
 
