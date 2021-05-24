@@ -30,6 +30,7 @@ public class ArticuloManofacturadoController extends ControllerImpl<ArticuloMano
 	@Autowired
 	ArticuloManofacturadoService service;
 	
+
 	@PostMapping("/crear")
 	public ResponseEntity<?> crear(@Valid ArticuloManofacturado articuloManufacturado, BindingResult result,
 			@RequestParam MultipartFile foto) throws IOException {
@@ -40,6 +41,7 @@ public class ArticuloManofacturadoController extends ControllerImpl<ArticuloMano
 	}
 	
 
+
 	@PutMapping("/editar/{id}")
 	public ResponseEntity<?> editar(@Valid ArticuloManofacturado articuloManufacturado,@PathVariable Long id,  BindingResult result, 
 			@RequestParam MultipartFile foto)  throws Exception {
@@ -47,6 +49,7 @@ public class ArticuloManofacturadoController extends ControllerImpl<ArticuloMano
 		ArticuloManofacturado articuloOp;
 		try {
 			 articuloOp= this.service.findById(id);
+
 			 			
 		}
 		catch(Exception e){
@@ -54,6 +57,7 @@ public class ArticuloManofacturadoController extends ControllerImpl<ArticuloMano
 						
 		}
 		
+
 		ArticuloManofacturado articuloDB=articuloOp;
 		
 		articuloDB.setDenominacion(articuloManufacturado.getDenominacion());
@@ -64,6 +68,7 @@ public class ArticuloManofacturadoController extends ControllerImpl<ArticuloMano
 	if(!foto.isEmpty()) {
 		articuloDB.setImagen(foto.getBytes());
 	}
+
 	
 	
 	return ResponseEntity.status(HttpStatus.CREATED).body(service.save(articuloDB));
