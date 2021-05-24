@@ -49,6 +49,7 @@ public class ArticuloManofacturado {
 	//json crece exponencialmente y no nos conviene	
 	@Column
 	private byte[] imagen;	
+
 	
 	
 	//este metodo es para que despues en el front nos retorne un codigo distinto de cada foto
