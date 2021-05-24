@@ -1,6 +1,7 @@
 package com.el.buen.sabor.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -42,6 +43,8 @@ public class RubroArticulo {
 	@JsonIgnoreProperties(value = {"padre", "handler", "hibernateLazyInitializer"}, allowSetters = true)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "padre", cascade = CascadeType.ALL)
 	private List<RubroArticulo> hijos;
+	
+	private Date fechaBaja;
 
 	public RubroArticulo() {
 		this.hijos = new ArrayList<>();

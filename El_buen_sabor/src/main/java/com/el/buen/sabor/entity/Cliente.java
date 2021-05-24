@@ -1,5 +1,6 @@
 package com.el.buen.sabor.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -47,6 +48,8 @@ public class Cliente {
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Pedido> pedido;
+	
+	private Date fechaBaja;
 	
 	
 }

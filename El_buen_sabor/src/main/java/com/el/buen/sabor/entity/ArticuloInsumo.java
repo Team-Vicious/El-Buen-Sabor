@@ -1,5 +1,7 @@
 package com.el.buen.sabor.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,6 +48,8 @@ public class ArticuloInsumo {
 	private String unidadMedida;
 	
 	private boolean esInsumo;
+	
+	private Date fechaBaja;
 	
 	@ManyToOne
 	private RubroArticulo rubroArticulo;

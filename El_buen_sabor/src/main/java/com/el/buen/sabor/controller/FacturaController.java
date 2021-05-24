@@ -23,7 +23,7 @@ public class FacturaController extends ControllerImpl<Factura, ServicesImpl<Fact
 	FacturaService service;
 	
 	@GetMapping("/factura-pedidoId/{id}")
-	public ResponseEntity<?> findUsuarioByClienteId(@PathVariable Long id) {
+	public ResponseEntity<?> findFacturaByPedidoId(@PathVariable Long id) {
 		
 		try {
 			

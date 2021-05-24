@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,4 +35,17 @@ public class PedidoController extends ControllerImpl<Pedido, ServicesImpl<Pedido
 					.body("{\"error\":\"error por favor intente mas tarde.\"}"+e.getMessage());
 		}
 	}
+	
+	@PostMapping("/pedido-mp")
+    public ResponseEntity<?> save(@RequestBody Pedido pedido){
+        
+    	
+    	try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.save(pedido));
+
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"error por favor intente mas tarde.\"}");
+        	
+        }
+    }
 }
