@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +29,8 @@ public class MercadopagoDatosController extends ControllerImpl<MercadopagoDatos,
 	@Autowired
 	MercadopagoDatosService service;
 	
-	@PostMapping("/checkoutmp")
-	public ResponseEntity<?> checkoutMercadoPago(@RequestBody Pedido pedido) throws MPException {
+	@PostMapping("/checkoutmp/{idu}/pedido/{idp}")
+	public ResponseEntity<?> checkoutMercadoPago(@RequestBody Pedido pedido, @PathVariable Long idu, @PathVariable Long idp) throws MPException {
 		MercadoPago.SDK.setAccessToken("APP_USR-1109909425044731-043001-bcc92ae49c03a4518181d64675c3f982-736455939");
 		
 		Preference preference = new Preference();
@@ -44,9 +45,9 @@ public class MercadopagoDatosController extends ControllerImpl<MercadopagoDatos,
 			preference.appendItem(item);
 			preference.setExternalReference(pedido.getId().toString());
 			BackUrls backUrls = new BackUrls(
-                    "http://localhost:4200/home",
-                    "http://localhost:4200/login",
-                    "http://localhost:4200/register");
+                    "http://localhost:4200/exitoso/"+idu+"/pedido/"+idp,
+                    "http://localhost:4200/pendiente/"+idu+"/pedido/"+idp,
+                    "http://localhost:4200/error/"+idu+"/pedido/"+idp);
 			//home succes --- login pending --- register error
 
 			preference.setBackUrls(backUrls);
