@@ -46,7 +46,7 @@ public class Cliente {
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Domicilio domicilio;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "cliente")
 	private List<Pedido> pedido;
 	
 	private Date fechaBaja;

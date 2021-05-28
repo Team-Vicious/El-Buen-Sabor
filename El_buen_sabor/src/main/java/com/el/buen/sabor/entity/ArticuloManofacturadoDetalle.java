@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +37,11 @@ public class ArticuloManofacturadoDetalle {
 	
 	@ManyToOne
 	private ArticuloInsumo articuloInsumo;
+	
+	@ManyToOne
+	@JsonIgnore
+	private ArticuloManofacturado articuloManofacturado;
+
 	
 	private Date fechaBaja;
 }
