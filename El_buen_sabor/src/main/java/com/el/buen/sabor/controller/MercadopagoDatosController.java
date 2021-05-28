@@ -31,7 +31,7 @@ public class MercadopagoDatosController extends ControllerImpl<MercadopagoDatos,
 	
 	@PostMapping("/checkoutmp/{idu}/pedido/{idp}")
 	public ResponseEntity<?> checkoutMercadoPago(@RequestBody Pedido pedido, @PathVariable Long idu, @PathVariable Long idp) throws MPException {
-		MercadoPago.SDK.setAccessToken("APP_USR-1109909425044731-043001-bcc92ae49c03a4518181d64675c3f982-736455939");
+		MercadoPago.SDK.setAccessToken("TEST-1109909425044731-043001-77d4f9d14cee27202857b22d9429c9c5-736455939");
 		
 		Preference preference = new Preference();
 
