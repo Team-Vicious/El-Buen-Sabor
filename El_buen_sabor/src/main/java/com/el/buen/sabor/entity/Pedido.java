@@ -10,9 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -55,10 +58,14 @@ public class Pedido {
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Factura factura;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "pedido")
 	private List<DetallePedido> detallePedido;
 	
 	@OneToOne
 	private MercadopagoDatos mercadopagoDatos; 
+	
+	@ManyToOne
+	@JsonIgnore
+	private Cliente cliente;
 
 }

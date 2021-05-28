@@ -52,7 +52,7 @@ public class Factura {
 	
 	private Date fechaBaja;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "factura")
 	private List<DetalleFactura> detalleFactura;
 
 }
