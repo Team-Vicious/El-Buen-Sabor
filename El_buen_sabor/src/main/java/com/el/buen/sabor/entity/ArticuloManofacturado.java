@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -56,7 +57,8 @@ public class ArticuloManofacturado {
 			
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "articuloManofacturado")
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="articuloManofacturado_id")
 	private List<ArticuloManofacturadoDetalle> articuloManofacturadoDetalle;
 	
 	@ManyToOne

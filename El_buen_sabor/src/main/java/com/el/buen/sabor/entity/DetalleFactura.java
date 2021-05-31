@@ -43,9 +43,6 @@ public class DetalleFactura {
 	@ManyToOne
 	private ArticuloInsumo articuloInsumo;
 	
-	@ManyToOne
-	@JsonIgnore
-	private Factura factura;
 	
 	
 }
