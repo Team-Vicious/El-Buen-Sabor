@@ -38,9 +38,6 @@ public class ArticuloManofacturadoDetalle {
 	@ManyToOne
 	private ArticuloInsumo articuloInsumo;
 	
-	@ManyToOne
-	@JsonIgnore
-	private ArticuloManofacturado articuloManofacturado;
 
 	
 	private Date fechaBaja;
