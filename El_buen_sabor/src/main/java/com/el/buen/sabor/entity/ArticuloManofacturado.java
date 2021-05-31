@@ -9,9 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -45,12 +46,9 @@ public class ArticuloManofacturado {
 	
 	
 	@Lob //esta annotation permite guardar en ddbb objetos como fotos, pdf, etc
-	//esto es porque no nos interesa pasarlo por el json ya que al ser bytes es muy grande y el
-	//json crece exponencialmente y no nos conviene	
 	@Column
 	private byte[] imagen;	
 
-	
 	
 	//este metodo es para que despues en el front nos retorne un codigo distinto de cada foto
 	public Integer getFotoHashCode() {
@@ -59,11 +57,13 @@ public class ArticuloManofacturado {
 			
 	}
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name="articuloManofacturado_id")
 	private List<ArticuloManofacturadoDetalle> articuloManofacturadoDetalle;
 	
 	@ManyToOne
 	private RubroGeneral rubroGeneral;
+	
 	
 
 }

@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,7 +49,8 @@ public class Cliente {
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Domicilio domicilio;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+	@JsonIgnore
 	private List<Pedido> pedido;
 	
 	private Date fechaBaja;
