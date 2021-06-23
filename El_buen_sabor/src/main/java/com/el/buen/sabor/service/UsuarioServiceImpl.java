@@ -23,5 +23,11 @@ public class UsuarioServiceImpl extends ServicesImpl<Usuario, Long> implements U
 		
 		return repository.findUsuarioByUsuarioAndPassword(usuario, constraseña);
 	}
+
+	@Override
+	public Usuario findUsuarioByUsuario(String usuario) {
+		
+		return repository.findUsuarioByUsuario(usuario);
+	}
 	
 }

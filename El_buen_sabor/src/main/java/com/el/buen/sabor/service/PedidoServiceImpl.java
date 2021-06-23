@@ -1,5 +1,6 @@
 package com.el.buen.sabor.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +21,29 @@ public class PedidoServiceImpl extends ServicesImpl<Pedido, Long> implements Ped
 		
 		return repository.findPedidosByClienteId(id);
 	}
+
+	@Override
+	public void reporteIngresos(Date fechaInicio, Date fechaDestino) {
+		repository.reporteIngresos( fechaInicio,  fechaDestino);
+		
+	}
+
+	@Override
+	public void reporteRankingPedidos(Date fechaInicio, Date fechaDestino) {
+		repository.reporteRankingPedidos(fechaInicio, fechaDestino);
+		
+	}
+
+	@Override
+	public void reporteGanancias(Date fechaInicio, Date fechaDestino) {
+		repository.reporteGanancias(fechaInicio, fechaDestino);
+		
+	}
+
+	@Override
+	public void reporteCantidadPedidosPorCliente(Date fechaInicio, Date fechaDestino) {
+		repository.reporteCantidadPedidosPorCliente(fechaInicio, fechaDestino);
+		
+	}
+	
 }
