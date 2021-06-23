@@ -1,0 +1,27 @@
+	
+DELIMITER //
+
+CREATE PROCEDURE  cantidadPedidosPorCliente (fechaInicio DATETIME, fechaDestino DATETIME)
+
+BEGIN
+
+SELECT 'cliente','cantidad_pedidos','fecha_desde','fecha_hasta'
+UNION ALL
+SELECT * FROM (
+SELECT cliente.`nombre` AS cliente, COUNT(pedido.`cliente_id`) AS cantidad_pedidos, fechaInicio, fechaDestino
+FROM cliente 
+INNER JOIN pedido ON cliente.`id` = pedido.`cliente_id`
+WHERE pedido.`fecha` BETWEEN fechaInicio AND fechaDestino
+GROUP BY cliente.id ORDER BY COUNT(pedido.`cliente_id`) DESC
+) a
+
+
+INTO OUTFILE 'D:\Ranking_Cantidad_Pedidos_x_Cliente.csv'
+        FIELDS TERMINATED BY ';'
+        OPTIONALLY ENCLOSED BY '\"'
+        LINES TERMINATED BY '\r\n';
+        
+END; //
+DELIMITER ;
+
+CALL cantidadPedidosPorCliente('2021-6-1 00:00:01', '2021-12-28 00:00:01');

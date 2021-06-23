@@ -1,0 +1,28 @@
+DELIMITER //
+
+CREATE PROCEDURE  rankingArticulosManufacturadosVendidos (fechaDesde DATETIME,fechaHasta DATETIME)
+
+BEGIN
+
+SELECT 'articulo','veces_vendido','fecha_desde','fecha_hasta'
+UNION ALL
+SELECT * FROM (SELECT `articulo_manofacturado`.`denominacion`,COUNT(`articulo_manofacturado`.`denominacion`) AS veces_vendido,fechaDesde,fechaHasta
+FROM detalle_pedido 
+INNER JOIN  `articulo_manofacturado` ON detalle_pedido.`articulo_manofacturado_id` = `articulo_manofacturado`.`id`
+INNER JOIN  pedido ON detalle_pedido.`pedido_id` = pedido.`id`
+WHERE pedido.`fecha` BETWEEN fechaDesde AND fechaHasta
+GROUP BY `articulo_manofacturado`.`denominacion`
+ORDER BY COUNT(`articulo_manofacturado`.`denominacion`) DESC) a
+
+
+INTO OUTFILE 'D:\Ranking_Venta_Articulos_Manufacturados.csv'
+        FIELDS TERMINATED BY ';'
+        OPTIONALLY ENCLOSED BY '\"'
+        LINES TERMINATED BY '\r\n';
+
+END; //
+
+DELIMITER ;
+
+CALL rankingArticulosManufacturadosVendidos('2021-6-1 00:00:1','2021-12-29 00:00:1');
+
