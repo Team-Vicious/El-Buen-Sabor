@@ -14,5 +14,8 @@ public interface UsuarioRepository extends Repository<Usuario, Long>{
 	
 	@Query("select u from Usuario u where u.usuario=?1 AND u.clave=?2")
 	public Usuario findUsuarioByUsuarioAndPassword(String usuario,String constraseña);
+	
+	@Query("select u from Usuario u where u.usuario=?1")
+	public Usuario findUsuarioByUsuario(String usuario);
 
 }

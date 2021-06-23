@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.el.buen.sabor.entity.Cliente;
-import com.el.buen.sabor.service.ArticuloInsumoService;
+import com.el.buen.sabor.service.ClienteService;
 import com.formaciondbi.microservicios.generics.controllers.ControllerImpl;
 import com.formaciondbi.microservicios.generics.services.ServicesImpl;
 
@@ -16,5 +16,5 @@ import com.formaciondbi.microservicios.generics.services.ServicesImpl;
 public class ClienteController extends ControllerImpl<Cliente, ServicesImpl<Cliente,Long>>{
 
 	@Autowired
-	ArticuloInsumoService service;
+	ClienteService service;
 }

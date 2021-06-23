@@ -1,0 +1,37 @@
+	
+DELIMITER //
+
+CREATE PROCEDURE  reporteIngresos( fechaInicio DATETIME, fechaDestino DATETIME )
+
+BEGIN
+
+SELECT 'Articulos_manufacturados_vendidos','Dia','Ingresos','Mes','reporte_fecha_desde','reporte_fecha_hasta'
+UNION ALL
+SELECT * FROM (
+
+	SELECT COUNT(detalle_pedido.`articulo_manofacturado_id`) AS articulos_manufacturados_vendidos, 
+	DAY(pedido.`fecha`) AS DIA,
+	SUM(pedido.`total`) AS ingresos ,
+	MONTH(pedido.`fecha`) AS mes,
+	fechaInicio, fechaDestino
+
+	FROM pedido 
+	INNER JOIN detalle_pedido ON pedido.`id` = detalle_pedido.`pedido_id`
+	WHERE pedido.`fecha` BETWEEN fechaInicio AND fechaDestino
+
+	GROUP BY
+	DAY(pedido.fecha),
+	MONTH(pedido.fecha)
+	ORDER BY MONTH(pedido.`fecha`),DAY(pedido.fecha) ASC
+) a
+
+INTO OUTFILE 'D:\Reporte_Ingresos.csv'
+        FIELDS TERMINATED BY ';'
+        OPTIONALLY ENCLOSED BY '\"'
+        LINES TERMINATED BY '\r\n';
+        
+END; //
+DELIMITER ;
+
+
+CALL reporteIngresos('2021-6-1 00:00:01', '2021-12-28 00:00:01');
