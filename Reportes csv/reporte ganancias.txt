@@ -5,19 +5,17 @@ CREATE PROCEDURE  reporteGanancias ( fechaInicio DATETIME, fechaDestino DATETIME
 
 BEGIN
 
-SELECT 'Articulo Manufacturado','cantidad_vendido','ganancia','mes','reporte_fecha_desde','reporte_fecha_hasta'
+SELECT 'ganancia','mes','reporte_fecha_desde','reporte_fecha_hasta'
 UNION ALL
 SELECT * FROM (
 
-SELECT `articulo_manofacturado`.`denominacion`,COUNT(`articulo_manofacturado`.`denominacion`) AS cantidad,
+SELECT 
 ROUND(SUM(factura.`total_venta` - factura.`total_costo`),1) AS ganancia , MONTH(pedido.fecha) AS Mes,fechaInicio , fechaDestino
 FROM pedido 
 INNER JOIN factura ON factura.`id` = pedido.`factura_id`
 INNER JOIN detalle_factura ON factura.id = detalle_factura.`factura_id`
-INNER JOIN `articulo_manofacturado` ON `articulo_manofacturado`.id = `detalle_factura`.`articulo_manofacturado_id`
 WHERE pedido.fecha BETWEEN fechaInicio AND fechaDestino
 GROUP BY
- `articulo_manofacturado`.denominacion,
 MONTH(pedido.fecha)
 ORDER BY MONTH(pedido.fecha) ASC
 
