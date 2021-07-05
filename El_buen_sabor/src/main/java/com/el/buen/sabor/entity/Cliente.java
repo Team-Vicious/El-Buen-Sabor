@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -32,15 +35,20 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotEmpty
 	@Column(length = 40)
 	private String nombre;
 	
+	@NotEmpty
 	@Column(length = 40)
 	private String apellido;
 	
 	@Column(length = 15)
 	private Long telefono;
 	
+	
+	@NotEmpty
+	@Email
 	@Column(length = 40)
 	private String email;
 	

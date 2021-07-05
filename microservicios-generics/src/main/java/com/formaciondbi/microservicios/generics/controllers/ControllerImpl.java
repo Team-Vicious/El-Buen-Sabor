@@ -83,9 +83,10 @@ public abstract class ControllerImpl<E , S extends ServicesImpl<E,Long>> impleme
             return ResponseEntity.status(HttpStatus.OK).body(servicio.update(id,entity));
 
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"error por favor intente mas tarde.\"}");
+        	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"error por favor intente mas tarde.\"}");
         }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
