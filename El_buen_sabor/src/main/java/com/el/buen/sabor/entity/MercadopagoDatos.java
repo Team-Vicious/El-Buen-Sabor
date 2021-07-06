@@ -34,9 +34,6 @@ public class MercadopagoDatos {
 	private Date fechaAprobacion;
 	
 	@Column(length = 30)
-	private String formaPago;
-	
-	@Column(length = 30)
 	private String metodoPago;
 	
 	@Column(length = 30)
