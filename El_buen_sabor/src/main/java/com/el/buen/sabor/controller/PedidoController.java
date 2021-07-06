@@ -105,5 +105,17 @@ public class PedidoController extends ControllerImpl<Pedido, ServicesImpl<Pedido
         }
     }
 	
+	@GetMapping("/pedido-facturaId/{id}")
+	ResponseEntity<?> findPedidoByFacturaId(@PathVariable Long id){
+		try {
+			
+			return ResponseEntity.status(HttpStatus.OK).body(service.findPedidoByFacturaId(id));
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"error por favor intente mas tarde.\"}"+e.getMessage());
+			
+		}
+	}
+	
 	
 }

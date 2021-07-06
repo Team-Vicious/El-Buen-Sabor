@@ -18,6 +18,9 @@ public interface PedidoRepository extends Repository<Pedido, Long>{
 	@Query("select p from Cliente c join c.pedido p where c.id=?1")
 	public List<Pedido> findPedidosByClienteId(Long id);
 	
+	@Query("select p from Pedido p join p.factura f where f.id=?1")
+	public Pedido findPedidoByFacturaId(Long id);
+	
 	@Transactional
 	@Modifying
 	@Query(value="{call reporteIngresos(:fechaInicio, :fechaDestino )}",nativeQuery = true)
