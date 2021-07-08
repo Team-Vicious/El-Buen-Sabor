@@ -117,5 +117,29 @@ public class PedidoController extends ControllerImpl<Pedido, ServicesImpl<Pedido
 		}
 	}
 	
+	@GetMapping("/pedidos-estado/{estado}")
+	ResponseEntity<?> findPedidosTipoEstado(@PathVariable int estado){
+		try {
+			
+			return ResponseEntity.status(HttpStatus.OK).body(service.findPedidosTipoEstado(estado));
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"error por favor intente mas tarde.\"}"+e.getMessage());
+			
+		}
+	}
+	
+	@GetMapping("/pedidos-tipoEnvio/{tipoEnvio}")
+	ResponseEntity<?> findPedidosTipoEnvio(@PathVariable int tipoEnvio){
+		try {
+			
+			return ResponseEntity.status(HttpStatus.OK).body(service.findPedidosTipoEnvio(tipoEnvio));
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"error por favor intente mas tarde.\"}"+e.getMessage());
+			
+		}
+	}
+	
 	
 }

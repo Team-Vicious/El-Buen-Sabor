@@ -18,6 +18,12 @@ public interface PedidoRepository extends Repository<Pedido, Long>{
 	@Query("select p from Cliente c join c.pedido p where c.id=?1")
 	public List<Pedido> findPedidosByClienteId(Long id);
 	
+	@Query("select p from Pedido p where p.estado=?1 ORDER BY p.id ASC")
+	public List<Pedido> findPedidosTipoEstado(int estado);
+	
+	@Query("select p from Pedido p where p.tipoEnvio=?1")
+	public List<Pedido> findPedidosTipoEnvio(int tipoEnvio);
+	
 	@Query("select p from Pedido p join p.factura f where f.id=?1")
 	public Pedido findPedidoByFacturaId(Long id);
 	
