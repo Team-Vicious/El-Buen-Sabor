@@ -1,0 +1,4 @@
+	
+ALTER TABLE pedido ADD INDEX estado_index (estado);
+
+ALTER TABLE pedido ADD INDEX tipo_envio_index (tipo_envio);
