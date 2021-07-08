@@ -51,5 +51,17 @@ public class PedidoServiceImpl extends ServicesImpl<Pedido, Long> implements Ped
 		
 		return repository.findPedidoByFacturaId(id);
 	}
+
+	@Override
+	public List<Pedido> findPedidosTipoEstado(int estado) {
+		
+		return repository.findPedidosTipoEstado(estado);
+	}
+
+	@Override
+	public List<Pedido> findPedidosTipoEnvio(int tipoEnvio) {
+		
+		return repository.findPedidosTipoEnvio(tipoEnvio);
+	}
 	
 }
