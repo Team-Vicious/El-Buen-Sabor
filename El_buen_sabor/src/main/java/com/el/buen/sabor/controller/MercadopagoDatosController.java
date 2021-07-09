@@ -39,7 +39,7 @@ public class MercadopagoDatosController extends ControllerImpl<MercadopagoDatos,
 		
 			// Crea un ítem en la preferencia
 			Item item = new Item();
-			item.setTitle("Pedido Nro "+pedido.getNumero())
+			item.setTitle("Pedido Nro "+idp)
 			    .setQuantity(1)
 			    .setUnitPrice((float) pedido.getTotal());
 			preference.appendItem(item);
