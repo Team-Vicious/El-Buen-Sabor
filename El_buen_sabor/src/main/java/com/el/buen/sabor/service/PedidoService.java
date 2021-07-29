@@ -18,6 +18,8 @@ public interface PedidoService extends Services<Pedido, Long>{
 	
 	public void reporteCantidadPedidosPorCliente(Date fechaInicio, Date fechaDestino);
 	
+	public void reportePedidos(Date fechaInicio, Date fechaDestino);
+	
 	public Pedido findPedidoByFacturaId(Long id);
 	
 	public List<Pedido> findPedidosTipoEstado(int estado);

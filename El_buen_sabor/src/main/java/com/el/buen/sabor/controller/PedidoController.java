@@ -105,6 +105,19 @@ public class PedidoController extends ControllerImpl<Pedido, ServicesImpl<Pedido
         }
     }
 	
+	@PostMapping("/reporte-pedidos")
+    public ResponseEntity<?> reportePedidos(@RequestBody Reporte fechas){
+    	
+    	try {
+    		service.reportePedidos(fechas.getFechaInicio(),fechas.getFechaDestino());
+    		return ResponseEntity.status(HttpStatus.OK).body("Reporte Generado");
+
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"error por favor intente mas tarde.\"}"+e);
+        	
+        }
+    }
+	
 	@GetMapping("/pedido-facturaId/{id}")
 	ResponseEntity<?> findPedidoByFacturaId(@PathVariable Long id){
 		try {

@@ -45,6 +45,12 @@ public class PedidoServiceImpl extends ServicesImpl<Pedido, Long> implements Ped
 		repository.reporteCantidadPedidosPorCliente(fechaInicio, fechaDestino);
 		
 	}
+	
+	@Override
+	public void reportePedidos(Date fechaInicio, Date fechaDestino) {
+		repository.reportePedidos(fechaInicio, fechaDestino);
+		
+	}
 
 	@Override
 	public Pedido findPedidoByFacturaId(Long id) {
@@ -63,5 +69,7 @@ public class PedidoServiceImpl extends ServicesImpl<Pedido, Long> implements Ped
 		
 		return repository.findPedidosTipoEnvio(tipoEnvio);
 	}
+
+	
 	
 }

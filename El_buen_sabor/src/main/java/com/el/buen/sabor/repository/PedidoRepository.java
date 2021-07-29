@@ -48,5 +48,10 @@ public interface PedidoRepository extends Repository<Pedido, Long>{
 	@Query(value="{call cantidadPedidosPorCliente(:fechaInicio, :fechaDestino )}",nativeQuery = true)
 	public void reporteCantidadPedidosPorCliente(@Param("fechaInicio") Date fechaInicio,@Param("fechaDestino") Date fechaDestino );
 	
+	@Transactional
+	@Modifying
+	@Query(value="{call reportePedidos(:fechaInicio, :fechaDestino )}",nativeQuery = true)
+	public void reportePedidos(@Param("fechaInicio") Date fechaInicio,@Param("fechaDestino") Date fechaDestino );
+	
 	
 }
