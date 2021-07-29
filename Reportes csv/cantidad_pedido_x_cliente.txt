@@ -5,10 +5,12 @@ CREATE PROCEDURE  cantidadPedidosPorCliente (fechaInicio DATETIME, fechaDestino 
 
 BEGIN
 
-SELECT 'cliente','cantidad_pedidos','fecha_desde','fecha_hasta'
+SELECT 'cliente','cantidad_pedidos',
+CONCAT('fecha_desde: ',DATE_FORMAT(fechaInicio,"%d-%m-%Y")),
+CONCAT('fecha_hasta: ',DATE_FORMAT(fechaDestino,"%d-%m-%Y"))
 UNION ALL
 SELECT * FROM (
-SELECT cliente.`nombre` AS cliente, COUNT(pedido.`cliente_id`) AS cantidad_pedidos, fechaInicio, fechaDestino
+SELECT cliente.`nombre` AS cliente, COUNT(pedido.`cliente_id`) AS cantidad_pedidos,"" AS vacio1,"" AS vacio2
 FROM cliente 
 INNER JOIN pedido ON cliente.`id` = pedido.`cliente_id`
 WHERE pedido.`fecha` BETWEEN fechaInicio AND fechaDestino
@@ -23,5 +25,6 @@ INTO OUTFILE 'D:\Ranking_Cantidad_Pedidos_x_Cliente.csv'
         
 END; //
 DELIMITER ;
+
 
 CALL cantidadPedidosPorCliente('2021-6-1 00:00:01', '2021-12-28 00:00:01');

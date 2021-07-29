@@ -5,12 +5,14 @@ CREATE PROCEDURE  reporteGanancias ( fechaInicio DATETIME, fechaDestino DATETIME
 
 BEGIN
 
-SELECT 'ganancia','mes','reporte_fecha_desde','reporte_fecha_hasta'
+SELECT 'ganancia','mes',
+CONCAT('fecha_desde: ',DATE_FORMAT(fechaInicio,"%d-%m-%Y")),
+CONCAT('fecha_hasta: ',DATE_FORMAT(fechaDestino,"%d-%m-%Y"))
 UNION ALL
 SELECT * FROM (
 
 SELECT 
-ROUND(SUM(factura.`total_venta` - factura.`total_costo`),1) AS ganancia , MONTH(pedido.fecha) AS Mes,fechaInicio , fechaDestino
+ROUND(SUM(factura.`total_venta` - factura.`total_costo`),1) AS ganancia , MONTH(pedido.fecha) AS Mes,"" AS vacio1,"" AS vacio2
 FROM pedido 
 INNER JOIN factura ON factura.`id` = pedido.`factura_id`
 INNER JOIN detalle_factura ON factura.id = detalle_factura.`factura_id`

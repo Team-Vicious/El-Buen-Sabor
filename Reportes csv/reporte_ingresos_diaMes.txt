@@ -5,15 +5,17 @@ CREATE PROCEDURE  reporteIngresos( fechaInicio DATETIME, fechaDestino DATETIME )
 
 BEGIN
 
-SELECT 'Dia','Ingresos','Mes','reporte_fecha_desde','reporte_fecha_hasta'
+SELECT 'Dia','Mes','Ingresos',
+CONCAT('fecha_desde: ',DATE_FORMAT(fechaInicio,"%d-%m-%Y")),
+CONCAT('fecha_hasta: ',DATE_FORMAT(fechaDestino,"%d-%m-%Y"))
 UNION ALL
 SELECT * FROM (
 
 	SELECT 
 	DAY(pedido.`fecha`) AS DIA,
-	SUM(pedido.`total`) AS ingresos ,
 	MONTH(pedido.`fecha`) AS mes,
-	fechaInicio, fechaDestino
+	SUM(pedido.`total`) AS ingresos,
+	"" AS vacio1,"" AS vacio2
 
 	FROM pedido 
 	INNER JOIN detalle_pedido ON pedido.`id` = detalle_pedido.`pedido_id`
@@ -32,6 +34,5 @@ INTO OUTFILE 'D:\Reporte_Ingresos.csv'
         
 END; //
 DELIMITER ;
-
 
 CALL reporteIngresos('2021-6-1 00:00:01', '2021-12-28 00:00:01');

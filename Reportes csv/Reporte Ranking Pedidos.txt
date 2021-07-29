@@ -4,9 +4,12 @@ CREATE PROCEDURE  rankingArticulosManufacturadosVendidos (fechaDesde DATETIME,fe
 
 BEGIN
 
-SELECT 'articulo','veces_vendido','fecha_desde','fecha_hasta'
+SELECT 'articulo','veces_vendido',
+CONCAT('fecha_desde: ',DATE_FORMAT(fechaDesde,"%d-%m-%Y")),
+CONCAT('fecha_hasta: ',DATE_FORMAT(fechaHasta,"%d-%m-%Y"))
+
 UNION ALL
-SELECT * FROM (SELECT `articulo_manofacturado`.`denominacion`,COUNT(`articulo_manofacturado`.`denominacion`) AS veces_vendido,fechaDesde,fechaHasta
+SELECT * FROM (SELECT `articulo_manofacturado`.`denominacion`,COUNT(`articulo_manofacturado`.`denominacion`) AS veces_vendido,"" AS vacio1,"" AS vacio2
 FROM detalle_pedido 
 INNER JOIN  `articulo_manofacturado` ON detalle_pedido.`articulo_manofacturado_id` = `articulo_manofacturado`.`id`
 INNER JOIN  pedido ON detalle_pedido.`pedido_id` = pedido.`id`
