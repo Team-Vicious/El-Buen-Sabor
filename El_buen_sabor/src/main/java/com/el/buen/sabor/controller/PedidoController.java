@@ -154,5 +154,17 @@ public class PedidoController extends ControllerImpl<Pedido, ServicesImpl<Pedido
 		}
 	}
 	
+	@PostMapping("/pedidos-fecha")
+	ResponseEntity<?> findPedidoByFecha(@RequestBody Reporte fechas){
+		try {
+			
+			return ResponseEntity.status(HttpStatus.OK).body(service.findPedidoByFecha(fechas.getFechaInicio(),fechas.getFechaDestino()));
+
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"error por favor intente mas tarde.\"}"+e.getMessage());
+			
+		}
+	}
+	
 	
 }

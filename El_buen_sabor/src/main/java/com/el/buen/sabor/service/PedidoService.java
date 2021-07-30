@@ -25,4 +25,6 @@ public interface PedidoService extends Services<Pedido, Long>{
 	public List<Pedido> findPedidosTipoEstado(int estado);
 	
 	public List<Pedido> findPedidosTipoEnvio(int tipoEnvio);
+	
+	public List<Pedido> findPedidoByFecha(Date fechaInicio, Date fechaDestino);
 }

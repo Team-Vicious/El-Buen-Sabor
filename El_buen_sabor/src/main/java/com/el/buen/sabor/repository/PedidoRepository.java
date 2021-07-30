@@ -27,6 +27,9 @@ public interface PedidoRepository extends Repository<Pedido, Long>{
 	@Query("select p from Pedido p join p.factura f where f.id=?1")
 	public Pedido findPedidoByFacturaId(Long id);
 	
+	@Query("select p from Pedido p where p.fecha >=?1 and p.fecha <=?2 order by p.fecha asc")
+	public List<Pedido> findPedidoByFecha(Date fechaInicio, Date fechaDestino);
+	
 	@Transactional
 	@Modifying
 	@Query(value="{call reporteIngresos(:fechaInicio, :fechaDestino )}",nativeQuery = true)

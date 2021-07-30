@@ -70,6 +70,12 @@ public class PedidoServiceImpl extends ServicesImpl<Pedido, Long> implements Ped
 		return repository.findPedidosTipoEnvio(tipoEnvio);
 	}
 
+	@Override
+	public List<Pedido> findPedidoByFecha(Date fechaInicio, Date fechaDestino) {
+		
+		return repository.findPedidoByFecha(fechaInicio, fechaDestino);
+	}
+
 	
 	
 }
