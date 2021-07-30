@@ -6,8 +6,8 @@ CREATE PROCEDURE  reportePedidos ( fechaInicio DATETIME, fechaDestino DATETIME )
 BEGIN
 
 (SELECT 'numero','fecha','total','cliente',
-CONCAT('fecha_desde: ',DATE_FORMAT('2021-6-1 00:00:01',"%d-%m-%Y")),
-CONCAT('fecha_hasta: ',DATE_FORMAT('2021-7-29 00:00:01',"%d-%m-%Y")),1 AS TMP_ORDER)
+CONCAT('fecha_desde: ',DATE_FORMAT(DATE_ADD(fechaInicio, INTERVAL 1 DAY),"%d-%m-%Y")),
+CONCAT('fecha_hasta: ',DATE_FORMAT(DATE_ADD(fechaDestino, INTERVAL 1 DAY),"%d-%m-%Y")),1 AS TMP_ORDER)
 
 UNION ALL
 
@@ -15,7 +15,7 @@ UNION ALL
 (SELECT pedido.`numero`, pedido.`fecha`, CONCAT(' $ ',pedido.`total`), cliente.`email`,"" AS vacio1,"" AS vacio2,"" AS vacio3
 FROM pedido 
 INNER JOIN cliente ON cliente.`id` = pedido.`cliente_id`
-WHERE (pedido.`fecha_baja` IS NULL) AND (pedido.`fecha` BETWEEN '2021-6-1 00:00:01' AND '2021-7-29 00:00:01')
+WHERE (pedido.`fecha_baja` IS NULL) AND (pedido.`fecha` BETWEEN DATE_ADD(fechaInicio, INTERVAL 1 DAY) AND DATE_ADD(fechaDestino, INTERVAL 1 DAY))
 ORDER BY (pedido.`fecha`) ASC)
 
 ORDER BY TMP_ORDER DESC, 
