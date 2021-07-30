@@ -6,8 +6,8 @@ CREATE PROCEDURE  reportePedidos ( fechaInicio DATETIME, fechaDestino DATETIME )
 BEGIN
 
 (SELECT 'numero','fecha','total','cliente',
-CONCAT('fecha_desde: ',DATE_FORMAT(DATE_ADD(fechaInicio, INTERVAL 1 DAY),"%d-%m-%Y")),
-CONCAT('fecha_hasta: ',DATE_FORMAT(DATE_ADD(fechaDestino, INTERVAL 1 DAY),"%d-%m-%Y")),1 AS TMP_ORDER)
+CONCAT('fecha_desde: ',DATE_FORMAT(fechaInicio,"%d-%m-%Y")),
+CONCAT('fecha_hasta: ',DATE_FORMAT(fechaDestino,"%d-%m-%Y")),1 AS TMP_ORDER)
 
 UNION ALL
 
